@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Your Dental Code — Instantly & Free</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Vercel Analytics -->
+  <script>
+    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/insights/script.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        fontFamily: { sans: ['Inter', 'sans-serif'] },
+        extend: {
+          colors: {
+            primary: '#2563eb',
+            accent: '#38bdf8',
+          },
+          boxShadow: {
+            card: '0 4px 24px 0 rgba(31, 38, 135, 0.10)',
+          },
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-blue-200 via-blue-100 to-cyan-100 flex flex-col items-center justify-center font-sans">
+  <div class="w-full max-w-lg px-2 sm:px-0 mt-10 mb-8">
+    <!-- Header -->
+    <div class="flex flex-col items-center mb-6">
+      <img src="https://img.icons8.com/ios-filled/100/2563eb/tooth.png" alt="Dental Logo" class="w-12 h-12 mb-2">
+      <h1 class="text-2xl font-extrabold text-primary tracking-tight text-center">Get Your Dental Code with 100% accuracy & Free</h1>
+      <div class="text-gray-700 text-base mt-2 text-center max-w-md"></div>
+    </div>
+    <div class="bg-white/80 backdrop-blur-lg rounded-2xl shadow-card px-6 py-7 border border-blue-100">
+      <form id="uploadForm" enctype="multipart/form-data" autocomplete="off">
+        <!-- Step 1: Textarea and upload -->
+        <div class="step step-1 block">
+          <div class="font-semibold text-primary text-lg mb-3">Paste text or upload file</div>
+          <div class="relative">
+            <textarea id="notes" name="notes" placeholder="Paste your treatment note here or Upload any files, like Voice notes, PDFs or Documents" class="w-full border border-blue-200 rounded-xl px-5 py-7 pb-28 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-primary/60 resize-vertical min-h-[180px] transition shadow-card text-base"></textarea>
+            <div class="absolute bottom-4 right-4 bg-white/80 backdrop-blur-sm rounded-lg">
+              <label for="files" class="flex items-center gap-2 cursor-pointer bg-primary hover:bg-accent text-white text-base font-semibold px-5 py-2 rounded shadow-lg transition focus:outline-none focus:ring-2 focus:ring-primary/60 z-10" style="margin-bottom:2px;">
+                <svg class="w-5 h-5 mr-1" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16.5 13.5L8.5 21.5a3 3 0 0 1-4.24-4.24l10-10a3 3 0 0 1 4.24 4.24l-8 8a1 1 0 1 1-1.42-1.42l7.3-7.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                Upload
+              </label>
+            </div>
+            <input type="file" id="files" name="files" multiple class="hidden">
+          </div>
+          <div id="fileList" class="mt-2 flex flex-wrap gap-1"></div>
+          <div class="text-xs text-gray-500 text-center mt-1">You can add multiple files.</div>
+          <div id="step1Error" class="hidden text-red-600 text-sm mb-2"></div>
+          <button type="button" id="nextBtn" class="btn-next mt-5 w-full py-3 bg-primary hover:bg-accent text-white font-semibold rounded-xl shadow transition text-base text-lg flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+            <span id="nextBtnText">Next</span>
+            <svg id="nextBtnSpinner" class="hidden animate-spin h-5 w-5 text-white ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+          </button>
+          <div class="text-xs text-gray-600 text-center mt-2">Free to use. No commitment. Just better billing.</div>
+        </div>
+        <!-- Step 2: Email only -->
+        <div class="step step-2 hidden">
+          <div class="font-semibold text-primary text-base mb-3 text-center">Where should we send your code?</div>
+          <input type="email" id="email" name="email" required placeholder="Personal Email (required)" class="w-full border border-blue-200 rounded-lg px-3 py-2 bg-blue-50 focus:outline-none focus:ring-2 focus:ring-primary/60 transition mb-1 text-base">
+          <div class="text-xs text-gray-600 mb-3">We will receive the codes via email, with all patient info masked. We do not store patient information. </div>
+          <button type="submit" id="submitBtn" class="mt-3 w-full py-3 bg-primary hover:bg-accent text-white font-semibold rounded-xl shadow transition text-base text-lg flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed">
+            <span id="submitBtnText">Submit</span>
+            <svg id="submitBtnSpinner" class="hidden animate-spin h-5 w-5 text-white ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"></path></svg>
+          </button>
+          <div id="submitProgress" class="hidden text-xs text-gray-600 text-center mt-2"></div>
+        </div>
+        <!-- Success message -->
+        <div id="successMsg" class="hidden flex flex-col items-center justify-center mt-8">
+          <div class="bg-green-100 rounded-full p-3 mb-2 animate-bounce">
+            <svg class="w-7 h-7 text-green-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <div class="text-green-700 font-bold text-base">Our AI is working on this, As you are on a free tier you will receive the E-mail within 12 hours, to get instant answer create an account with us!</div>
+        </div>
+      </form>
+      <!-- Divider -->
+      <div class="my-8 border-t border-blue-100"></div>
+      <!-- Testimonials (only show on Step 1) -->
+      <div id="testimonialsSection" class="mb-8">
+        <div class="font-semibold text-primary flex items-center gap-2 text-lg my-8">
+          <svg class="w-7 h-7 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 14c-4.418 0-8 1.79-8 4v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2c0-2.21-3.582-4-8-4z"/></svg>
+          <span class="align-middle">What Other Clinics Say</span>
+        </div>
+        <div class="flex flex-col gap-4">
+          <div class="relative bg-blue-50/80 rounded-xl p-4 border border-blue-100 shadow-sm">
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-9 h-9 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold text-lg">FD</div>
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <svg class="w-5 h-5 text-blue-400" fill="none" <path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-2 2 2h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z"/></svg>
+                  <span class="italic text-gray-700">“We used to guess codes. Now our claims get paid faster. This tool saved us over $2,400 in denials last month alone.”</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">— Front Desk, SmileBright Dental, FL</div>
+              </div>
+            </div>
+          </div>
+          <div class="relative bg-blue-50/80 rounded-xl p-4 border border-blue-100 shadow-sm">
+            <div class="flex items-start gap-3">
+              <div class="flex-shrink-0 w-9 h-9 rounded-full bg-blue-200 flex items-center justify-center text-blue-700 font-bold text-lg">E</div>
+              <div>
+                <div class="flex items-center gap-1 mb-1">
+                  <svg class="w-5 h-5 text-blue-400" fill="none"<path d="M19 21H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h4l2-2 2 2h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2z"/></svg>
+                  <span class="italic text-gray-700">“I submitted a scenario during lunch and got the correct code before my next patient. No login. Super easy.”</span>
+                </div>
+                <div class="text-xs text-gray-500 mt-1">— Emma, FD @ Valley Smiles</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Privacy reassurance -->
+      <div class="mb-8 bg-blue-50/90 rounded-xl p-5 text-xs text-gray-700 border border-blue-200 shadow-sm">
+        <div class="font-semibold text-primary mb-2 flex items-center gap-2">
+          <svg class="w-5 h-5 text-primary -mt-0.5" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 2a4 4 0 0 0-4 4v2a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2v-6a2 2 0 0 0-2-2V6a4 4 0 0 0-4-4zm-2 6V6a2 2 0 1 1 4 0v2H8zm-2 2h8v6H6v-6z" clip-rule="evenodd"/></svg>
+          <span class="align-middle">Worried about data privacy? Don't be.</span>
+        </div>
+        <ul class="space-y-1 ml-5">
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>No PHI is stored.</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>All uploads are permanently deleted after coding.</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>100% HIPAA-conscious workflow.</li>
+          <li class="flex items-center gap-2"><svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg>You're not signing up for anything — just getting help.</li>
+        </ul>
+      </div>
+      <!-- Contact/help -->
+      <div class="mb-2 text-center text-xs text-gray-600 flex items-center justify-center gap-2">
+        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg>
+        <span>Need help? <a href="mailto:founder@adambilling.com" class="text-primary underline">Email us at founder@adambilling.com</a></span>
+      </div>
+    </div>
+  </div>
+  <script>
+    const nextBtn = document.getElementById('nextBtn');
+    const step1 = document.querySelector('.step-1');
+    const step2 = document.querySelector('.step-2');
+    const form = document.getElementById('uploadForm');
+    const successMsg = document.getElementById('successMsg');
+    const step1Error = document.getElementById('step1Error');
+    const fileInput = document.getElementById('files');
+    const fileList = document.getElementById('fileList');
+    const nextBtnText = document.getElementById('nextBtnText');
+    const nextBtnSpinner = document.getElementById('nextBtnSpinner');
+    const submitBtn = document.getElementById('submitBtn');
+    const submitBtnText = document.getElementById('submitBtnText');
+    const submitBtnSpinner = document.getElementById('submitBtnSpinner');
+
+    // Custom file array to allow adding files one by one
+    let selectedFiles = [];
+
+    fileInput.addEventListener('change', (e) => {
+      // Add new files to the array (avoid duplicates by name+size)
+      for (let i = 0; i < fileInput.files.length; i++) {
+        const file = fileInput.files[i];
+        if (!selectedFiles.some(f => f.name === file.name && f.size === file.size)) {
+          selectedFiles.push(file);
+        }
+      }
+      updateFileList();
+      // Track file upload event
+      if (window.va && fileInput.files.length > 0) {
+        window.va('track', 'File Uploaded', { files: fileInput.files.length });
+      }
+      // Reset input so user can add the same file again if needed
+      fileInput.value = '';
+    });
+
+    function updateFileList() {
+      fileList.innerHTML = '';
+      selectedFiles.forEach((file, idx) => {
+        fileList.innerHTML += `<span class='inline-flex items-center bg-blue-100 text-blue-800 rounded px-2 py-1 mr-1 mb-1'>${file.name} <button type='button' class='ml-1 text-red-500 hover:text-red-700' onclick='removeFile(${idx})' title='Remove'>&times;</button></span>`;
+      });
+    }
+
+    window.removeFile = function(idx) {
+      selectedFiles.splice(idx, 1);
+      updateFileList();
+      // Track file removal
+      if (window.va) {
+        window.va('track', 'File Removed');
+      }
+    };
+
+    // Hide testimonials on Step 2
+    function showStep(stepNum) {
+      if (stepNum === 1) {
+        step1.classList.remove('hidden');
+        step2.classList.add('hidden');
+        document.getElementById('testimonialsSection').classList.remove('hidden');
+      } else {
+        step1.classList.add('hidden');
+        step2.classList.remove('hidden');
+        document.getElementById('testimonialsSection').classList.add('hidden');
+        // Track step progression
+        if (window.va) {
+          window.va('track', 'Reached Step 2');
+        }
+      }
+    }
+
+    nextBtn.addEventListener('click', () => {
+      const notes = document.getElementById('notes').value.trim();
+      if (!notes && selectedFiles.length === 0) {
+        step1Error.textContent = 'Paste your note or upload a file.';
+        step1Error.classList.remove('hidden');
+        // Track validation error
+        if (window.va) {
+          window.va('track', 'Form Validation Error', { step: 1 });
+        }
+        return;
+      }
+      step1Error.classList.add('hidden');
+      // Track successful step 1 completion
+      if (window.va) {
+        window.va('track', 'Step 1 Completed', { 
+          hasNotes: !!notes, 
+          hasFiles: selectedFiles.length > 0,
+          fileCount: selectedFiles.length 
+        });
+      }
+      showStep(2);
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (submitBtn.disabled) return;
+      
+      // Track form submission attempt
+      if (window.va) {
+        window.va('track', 'Form Submission Started');
+      }
+      
+      const submitProgress = document.getElementById('submitProgress');
+      submitBtn.disabled = true;
+      submitBtnSpinner.classList.remove('hidden');
+      submitBtnText.textContent = 'Sending...';
+      submitProgress.classList.remove('hidden');
+      submitProgress.textContent = 'Uploading files and sending email...';
+      
+      const formData = new FormData();
+      const notes = document.getElementById('notes').value;
+      const email = document.getElementById('email').value;
+      for (let i = 0; i < selectedFiles.length; i++) {
+        formData.append('files', selectedFiles[i]);
+      }
+      formData.append('notes', notes);
+      formData.append('email', email);
+      
+      // Show different progress messages
+      const progressMessages = [
+        'Uploading files and sending email...',
+        'Processing your submission...',
+        'Almost done...'
+      ];
+      let progressIndex = 0;
+      
+      const progressInterval = setInterval(() => {
+        progressIndex = (progressIndex + 1) % progressMessages.length;
+        if (!submitBtn.disabled) {
+          clearInterval(progressInterval);
+          return;
+        }
+        submitProgress.textContent = progressMessages[progressIndex];
+      }, 2000);
+      
+      fetch('/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => {
+        clearInterval(progressInterval);
+        submitBtn.disabled = false;
+        submitBtnSpinner.classList.add('hidden');
+        submitBtnText.textContent = 'Submit';
+        submitProgress.classList.add('hidden');
+        if (response.redirected) {
+          // Track successful submission
+          if (window.va) {
+            window.va('track', 'Form Submitted Successfully', { method: 'redirect' });
+          }
+          window.location.href = response.url;
+        } else if (response.ok) {
+          // Track successful submission
+          if (window.va) {
+            window.va('track', 'Form Submitted Successfully', { method: 'inline' });
+          }
+          step2.classList.add('hidden');
+          successMsg.classList.remove('hidden');
+          successMsg.classList.add('flex');
+        } else {
+          // Track submission error
+          if (window.va) {
+            window.va('track', 'Form Submission Error', { status: response.status });
+          }
+          return response.text().then(text => alert('Error: ' + text));
+        }
+      })
+      .catch((error) => {
+        clearInterval(progressInterval);
+        submitBtn.disabled = false;
+        submitBtnSpinner.classList.add('hidden');
+        submitBtnText.textContent = 'Submit';
+        submitProgress.classList.add('hidden');
+        // Track submission failure
+        if (window.va) {
+          window.va('track', 'Form Submission Failed', { error: error.message });
+        }
+        alert('Submission failed. Please try again.');
+      });
+    });
+  </script>
+</body>
+</html> 
