@@ -1,14 +1,14 @@
-# Dental Coding React App
+# Chiropractic Practice Website
 
-A modern React application built with Vite for dental coding submissions. Users can upload treatment notes and files to receive accurate CDT codes via email.
+A modern React application built with Vite for chiropractic practice management. Patients can upload treatment notes and files to receive accurate billing codes and treatment plans via email.
 
 ## Features
 
-- 🦷 **Modern UI**: Clean, responsive design with Tailwind CSS
-- 📁 **File Upload**: Support for multiple file types (PDFs, documents, voice notes)
+- 🏥 **Modern UI**: Clean, responsive design with Tailwind CSS
+- 📁 **File Upload**: Support for multiple file types (PDFs, documents, voice notes, X-rays)
 - 📧 **Email Integration**: Automated email sending with Nodemailer
 - 📊 **Analytics**: Comprehensive tracking with Vercel Analytics
-- 🔒 **Privacy First**: HIPAA-conscious workflow with secure file handling
+- 🔒 **Privacy First**: HIPAA-compliant workflow with secure file handling
 - ⚡ **Fast**: Built with Vite for optimal performance
 - 📱 **Responsive**: Mobile-first design that works on all devices
 
@@ -34,7 +34,7 @@ A modern React application built with Vite for dental coding submissions. Users 
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd dental-coding-react
+cd chiropractic-website
 ```
 
 2. Install dependencies:
@@ -90,12 +90,12 @@ The `dist` folder contains the production build.
 
 ### POST /api/upload
 
-Handles form submissions with files and email sending.
+Handles form submissions with files and email sending for patient consultations.
 
 **Request:**
-- `files`: Multiple files (optional)
-- `notes`: Text content (optional)
-- `email`: User email (required)
+- `files`: Multiple files (optional) - X-rays, medical records, etc.
+- `notes`: Treatment notes or symptoms (optional)
+- `email`: Patient email (required)
 
 **Response:**
 - Success: Redirects to thank you page
@@ -105,29 +105,29 @@ Handles form submissions with files and email sending.
 
 The application tracks the following custom events:
 
-- `File Uploaded` - When users upload files
-- `File Removed` - When users remove files
-- `Step 1 Completed` - When users complete the first step
-- `Reached Step 2` - When users progress to email step
+- `File Uploaded` - When patients upload files
+- `File Removed` - When patients remove files
+- `Step 1 Completed` - When patients complete the first step
+- `Reached Step 2` - When patients progress to email step
 - `Form Validation Error` - When validation fails
 - `Form Submission Started` - When form submission begins
 - `Form Submitted Successfully` - When submission succeeds
 - `Form Submission Error` - When server errors occur
 - `Form Submission Failed` - When client errors occur
-- `Form Completed` - When users reach thank you page
+- `Form Completed` - When patients reach thank you page
 
 ## Project Structure
 
 ```
-dental-coding-react/
+chiropractic-website/
 ├── api/
 │   └── upload.js          # Vercel serverless function
 ├── src/
 │   ├── components/
-│   │   ├── DentalForm.jsx # Main form component
+│   │   ├── ChiropracticForm.jsx # Main patient form component
 │   │   ├── FileUpload.jsx # File upload handler
-│   │   ├── Testimonials.jsx # Customer testimonials
-│   │   ├── PrivacySection.jsx # Privacy information
+│   │   ├── Testimonials.jsx # Patient testimonials
+│   │   ├── PrivacySection.jsx # HIPAA privacy information
 │   │   └── ThankYou.jsx   # Success page
 │   ├── App.jsx            # Main app component
 │   ├── main.jsx           # App entry point
@@ -161,7 +161,7 @@ dental-coding-react/
 - All file uploads are stored in memory temporarily
 - Files are permanently deleted after email sending
 - No PHI (Protected Health Information) is stored
-- HIPAA-conscious workflow implementation
+- HIPAA-compliant workflow implementation
 - Environment variables for sensitive data
 
 ## Contributing
@@ -178,4 +178,4 @@ This project is proprietary software. All rights reserved.
 
 ## Support
 
-For support, email founder@adambilling.com or create an issue in the repository.
+For support, email support@chiropracticpractice.com or create an issue in the repository.

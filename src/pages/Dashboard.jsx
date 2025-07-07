@@ -346,11 +346,9 @@ const Dashboard = () => {
           {/* Hero Section */}
           <div className="text-center mb-16">
             <h1 className="text-5xl font-bold text-gray-900 mb-6">
-              Transform Your Chiropractic Practice
+              Chiropractic Practice
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto"> 
-              Streamline patient care, enhance treatment outcomes, and grow your practice with our comprehensive chiropractic management platform.
-            </p>
+            
           </div>
 
           {/* Service Cards */}
