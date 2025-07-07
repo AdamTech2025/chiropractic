@@ -2,16 +2,6 @@
   "version": 2,
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "routes": [
-    {
-      "src": "/api/upload",
-      "dest": "/api/upload.js"
-    },
-    {
-      "src": "/api/eligibility",
-      "dest": "/api/eligibility.js"
-    }
-  ],
   "functions": {
     "api/upload.js": {
       "maxDuration": 30
