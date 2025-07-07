@@ -4,7 +4,7 @@ const ThankYou = ({ serviceType = 'dental', onBack }) => {
       case 'eligibility':
         return {
           title: 'Eligibility Check Submitted!',
-          subtitle: 'We are on calling your payer',
+          subtitle: 'We are on call with your payer',
 
           response: 'You will receive your eligibility results via email within 60 minutes.',
           nextSteps: 'Our team is verifying your insurance information with the latest provider databases. Results will be delivered to your email shortly!',
