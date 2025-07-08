@@ -286,7 +286,7 @@ const Dashboard = () => {
       title: 'Insurance Eligibility',
       subtitle: 'We call the insurance for you, so you don\'t have to be hold',
       icon: (
-        <svg className="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+        <svg className="w-8 h-8 sm:w-10 lg:w-12 text-blue-600" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
           <path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       ),
@@ -303,16 +303,16 @@ const Dashboard = () => {
       {/* Header */}
       <header className="bg-white/80 backdrop-blur-md border-b border-gray-200/50 sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center space-x-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+          <div className="flex items-center justify-between h-14 sm:h-16">
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <div className="w-7 h-7 sm:w-8 sm:h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
               </div>
               <div>
-                <h1 className="text-lg font-bold text-gray-900">ChiroWell Pro</h1>
-                <p className="text-xs text-gray-500">Professional Chiropractic Solutions</p>
+                <h1 className="text-base sm:text-lg font-bold text-gray-900">ChiroWell Pro</h1>
+                <p className="text-xs text-gray-500 hidden sm:block">Professional Chiropractic Solutions</p>
               </div>
             </div>
             
@@ -323,44 +323,43 @@ const Dashboard = () => {
                 navigate('/help')
                 track('Help Page Accessed', { from: 'dashboard' })
               }}
-              className="text-gray-500 hover:text-blue-600 transition-colors duration-200 flex items-center space-x-2"
+              className="text-gray-500 hover:text-blue-600 transition-colors duration-200 flex items-center space-x-1 sm:space-x-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                 <path d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
-              <span className="text-sm">Need Help?</span>
+              <span className="text-sm hidden sm:inline">Need Help?</span>
+              <span className="text-sm sm:hidden">Help</span>
             </a>
           </div>
         </div>
       </header>
 
-      <div className="text-center mb-16">
-      
-        <p className="text-xl text-gray-600 max-w-3xl mx-auto"> 
+      <div className="text-center mb-8 sm:mb-16">
+        <p className="text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto px-4"> 
         </p>
       </div>
 
       {/* Main Dashboard Content */}
-      <main className="flex-1 flex flex-col items-center justify-center px-4 py-8">
+      <main className="flex-1 flex flex-col items-center justify-center px-4 py-4 sm:py-8">
         <div className="max-w-6xl mx-auto w-full">
           {/* Hero Section */}
-          <div className="text-center mb-16">
-            <h1 className="text-5xl font-bold text-gray-900 mb-6">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 px-4">
               Chiropractic Practice
             </h1>
-            
           </div>
 
           {/* Service Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-1 gap-8 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 gap-6 sm:gap-8 max-w-3xl mx-auto mb-8 sm:mb-16">
             {services.map((service) => (
               <div
                 key={service.id}
                 onClick={() => handleServiceClick(service.id)}
                 className={`
                   group cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl
-                  bg-gradient-to-br ${service.bgGradient} rounded-3xl border-2 ${service.borderColor}
-                  p-8 text-center relative overflow-hidden
+                  bg-gradient-to-br ${service.bgGradient} rounded-2xl sm:rounded-3xl border-2 ${service.borderColor}
+                  p-6 sm:p-8 text-center relative overflow-hidden
                 `}
               >
                 {/* Background Pattern */}
@@ -371,31 +370,26 @@ const Dashboard = () => {
                 {/* Content */}
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-20 h-20 bg-white rounded-2xl shadow-lg mb-6 group-hover:shadow-xl transition-shadow duration-300">
+                  <div className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-white rounded-xl sm:rounded-2xl shadow-lg mb-4 sm:mb-6 group-hover:shadow-xl transition-shadow duration-300">
                     {service.icon}
                   </div>
 
                   {/* Title */}
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
                     {service.title}
                   </h2>
-                  <p className="text-lg text-gray-600 mb-4">
+                  <p className="text-base sm:text-lg text-gray-600 mb-4 px-2">
                     {service.subtitle}
                   </p>
 
-                  {/* Description */}
-                  {/* <p className="text-gray-700 mb-6 leading-relaxed">
-                    Complete patient management system designed specifically for chiropractic practices. Track treatments, manage appointments, and enhance patient outcomes with our comprehensive platform.
-                  </p> */}
-
                   {/* Features */}
-                  <div className="flex items-center justify-center space-x-6 mb-8">
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-6 space-y-2 sm:space-y-0 mb-6 sm:mb-8">
                     {service.features.map((feature, index) => (
                       <div key={index} className="flex items-center space-x-1">
-                        <svg className="w-4 h-4 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
-                        <span className="text-sm text-gray-600 font-medium">{feature}</span>
+                        <span className="text-xs sm:text-sm text-gray-600 font-medium">{feature}</span>
                       </div>
                     ))}
                   </div>
@@ -403,13 +397,13 @@ const Dashboard = () => {
                   {/* CTA Button */}
                   <button className={`
                     w-full bg-gradient-to-r ${service.gradient} hover:${service.hoverGradient}
-                    text-white font-semibold py-4 px-8 rounded-xl
+                    text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-lg sm:rounded-xl
                     transition-all duration-300 shadow-lg hover:shadow-xl
-                    group-hover:scale-105
+                    group-hover:scale-105 text-sm sm:text-base
                   `}>
                     <span className="flex items-center justify-center space-x-2">
                       <span>Check Eligibility</span>
-                      <svg className="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                         <path d="M13 7l5 5m0 0l-5 5m5-5H6" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </span>
@@ -420,8 +414,8 @@ const Dashboard = () => {
           </div>
 
           {/* Trust Indicators */}
-          <div className="mt-16 text-center">
-            <div className="flex items-center justify-center space-x-8 text-sm text-gray-500">
+          <div className="mt-8 sm:mt-16 text-center">
+            <div className="flex flex-col sm:flex-row items-center justify-center sm:space-x-8 space-y-4 sm:space-y-0 text-sm text-gray-500">
               <div className="flex items-center space-x-2">
                 <svg className="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -445,41 +439,41 @@ const Dashboard = () => {
         </div>
 
         {/* Testimonials Section */}
-        <div className="w-full max-w-7xl mx-auto mt-20 px-4">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center justify-center px-4 py-2 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-6">
-              <span className="text-blue-600 font-semibold text-sm">TESTIMONIALS</span>
+        <div className="w-full max-w-7xl mx-auto mt-12 sm:mt-20 px-4">
+          <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+            <div className="inline-flex items-center justify-center px-3 py-2 sm:px-4 bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full mb-4 sm:mb-6">
+              <span className="text-blue-600 font-semibold text-xs sm:text-sm">TESTIMONIALS</span>
             </div>
-            <h2 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight px-4">
               Loved by <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">1000+</span> Chiropractors
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-lg sm:text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed px-4">
               See how chiropractic professionals are transforming their practices with our platform
             </p>
           </div>
 
           {/* Modern Testimonial Card */}
-          <div className="relative max-w-5xl mx-auto mb-16">
+          <div className="relative max-w-5xl mx-auto mb-8 sm:mb-12 lg:mb-16">
             {/* Main Testimonial Card */}
-            <div className="relative bg-white/70 backdrop-blur-xl rounded-3xl p-8 md:p-12 shadow-2xl border border-white/20 overflow-hidden">
+            <div className="relative bg-white/70 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-white/20 overflow-hidden">
               {/* Animated Background Gradient */}
               <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-indigo-50/30 to-purple-50/50 animate-pulse"></div>
               
               {/* Floating Elements */}
-              <div className="absolute top-6 right-6 w-20 h-20 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full blur-xl animate-bounce"></div>
-              <div className="absolute bottom-6 left-6 w-16 h-16 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-pulse"></div>
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 w-12 h-12 sm:w-20 sm:h-20 bg-gradient-to-br from-blue-400/20 to-indigo-400/20 rounded-full blur-xl animate-bounce"></div>
+              <div className="absolute bottom-4 left-4 sm:bottom-6 sm:left-6 w-10 h-10 sm:w-16 sm:h-16 bg-gradient-to-br from-purple-400/20 to-pink-400/20 rounded-full blur-xl animate-pulse"></div>
 
               {/* Content */}
               <div className="relative z-10">
                 {/* Rating Stars with Animation */}
-                <div className="flex justify-center mb-8">
+                <div className="flex justify-center mb-6 sm:mb-8">
                   {[...Array(5)].map((_, i) => (
                     <div
                       key={i}
                       className="transform transition-all duration-300 hover:scale-125"
                       style={{ animationDelay: `${i * 0.1}s` }}
                     >
-                      <svg className="w-7 h-7 text-yellow-400 fill-current drop-shadow-sm animate-pulse" viewBox="0 0 24 24">
+                      <svg className="w-5 h-5 sm:w-6 lg:w-7 text-yellow-400 fill-current drop-shadow-sm animate-pulse" viewBox="0 0 24 24">
                         <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
                       </svg>
                     </div>
@@ -487,41 +481,41 @@ const Dashboard = () => {
                 </div>
 
                 {/* Quote Icon */}
-                <div className="flex justify-center mb-6">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg">
-                    <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <div className="flex justify-center mb-4 sm:mb-6">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-full flex items-center justify-center shadow-lg">
+                    <svg className="w-5 h-5 sm:w-6 sm:h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                       <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h4v10h-10z"/>
                     </svg>
                   </div>
                 </div>
 
                 {/* Review Text with Typing Animation Effect */}
-                <div className="text-center mb-10">
-                  <blockquote className="text-2xl md:text-3xl text-gray-800 font-medium leading-relaxed mb-2 transition-all duration-1000 ease-out">
+                <div className="text-center mb-6 sm:mb-8 lg:mb-10">
+                  <blockquote className="text-lg sm:text-xl lg:text-2xl xl:text-3xl text-gray-800 font-medium leading-relaxed mb-2 transition-all duration-1000 ease-out px-2">
                     "{testimonials[currentReview].review}"
                   </blockquote>
                 </div>
 
                 {/* Author Card */}
                 <div className="flex items-center justify-center">
-                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/30 flex items-center space-x-4 max-w-md">
+                  <div className="bg-white/80 backdrop-blur-sm rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg border border-white/30 flex flex-col sm:flex-row items-center space-y-3 sm:space-y-0 sm:space-x-4 max-w-md">
                     {/* Avatar with Gradient Ring */}
-                    <div className="relative">
+                    <div className="relative flex-shrink-0">
                       <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full animate-spin-slow"></div>
-                      <div className="relative w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-lg m-1 shadow-inner">
+                      <div className="relative w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm sm:text-lg m-1 shadow-inner">
                         {testimonials[currentReview].avatar}
                       </div>
                     </div>
                     
                     {/* Author Info */}
-                    <div className="text-left">
-                      <div className="font-bold text-gray-900 text-lg mb-1">
+                    <div className="text-center sm:text-left">
+                      <div className="font-bold text-gray-900 text-base sm:text-lg mb-1">
                         {testimonials[currentReview].name}
                       </div>
                       <div className="text-blue-600 font-semibold text-sm mb-1">
                         {testimonials[currentReview].role}
                       </div>
-                      <div className="text-gray-500 text-sm flex items-center">
+                      <div className="text-gray-500 text-sm flex items-center justify-center sm:justify-start">
                         <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                         </svg>
@@ -534,27 +528,27 @@ const Dashboard = () => {
             </div>
 
             {/* Navigation Controls */}
-            <div className="flex items-center justify-center mt-8 space-x-6">
+            <div className="flex items-center justify-center mt-6 sm:mt-8 space-x-4 sm:space-x-6">
               {/* Previous Button */}
               <button
                 onClick={() => setCurrentReview(currentReview === 0 ? testimonials.length - 1 : currentReview - 1)}
-                className="group flex items-center justify-center w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-white/30 hover:bg-white transition-all duration-300 hover:scale-110"
+                className="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-white/30 hover:bg-white transition-all duration-300 hover:scale-110"
               >
-                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
 
               {/* Dots Indicator */}
-              <div className="flex space-x-2">
-                {testimonials.map((_, index) => (
+              <div className="flex space-x-1 sm:space-x-2 overflow-x-auto max-w-xs sm:max-w-none">
+                {testimonials.slice(0, 10).map((_, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentReview(index)}
-                    className={`transition-all duration-300 ${
+                    className={`transition-all duration-300 flex-shrink-0 ${
                       index === currentReview 
-                        ? 'w-8 h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full shadow-lg' 
-                        : 'w-3 h-3 bg-gray-300 hover:bg-gray-400 rounded-full hover:scale-125'
+                        ? 'w-6 sm:w-8 h-2 sm:h-3 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full shadow-lg' 
+                        : 'w-2 sm:w-3 h-2 sm:h-3 bg-gray-300 hover:bg-gray-400 rounded-full hover:scale-125'
                     }`}
                   />
                 ))}
@@ -563,18 +557,18 @@ const Dashboard = () => {
               {/* Next Button */}
               <button
                 onClick={() => setCurrentReview((currentReview + 1) % testimonials.length)}
-                className="group flex items-center justify-center w-12 h-12 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-white/30 hover:bg-white transition-all duration-300 hover:scale-110"
+                className="group flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-white/30 hover:bg-white transition-all duration-300 hover:scale-110"
               >
-                <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600 group-hover:text-blue-600 transition-colors duration-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </button>
             </div>
 
             {/* Review Counter */}
-            <div className="text-center mt-6">
-              <div className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full shadow-sm border border-white/20">
-                <span className="text-gray-600 text-sm font-medium">
+            <div className="text-center mt-4 sm:mt-6">
+              <div className="inline-flex items-center px-3 py-2 sm:px-4 bg-white/60 backdrop-blur-sm rounded-full shadow-sm border border-white/20">
+                <span className="text-gray-600 text-xs sm:text-sm font-medium">
                   {currentReview + 1} of {testimonials.length} reviews
                 </span>
               </div>
@@ -582,37 +576,39 @@ const Dashboard = () => {
           </div>
 
           {/* Modern Stats Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
             {[
               { number: "1000+", label: "Happy Chiropractic Professionals", color: "from-blue-500 to-blue-600", icon: "👨‍⚕️" },
               { number: "98.5%", label: "Patient Satisfaction Rate", color: "from-emerald-500 to-emerald-600", icon: "✅" },
               { number: "15k+", label: "Successful Treatments Managed", color: "from-purple-500 to-purple-600", icon: "🎯" }
             ].map((stat, index) => (
               <div key={index} className="group">
-                <div className="bg-white/70 backdrop-blur-xl rounded-2xl p-8 shadow-xl border border-white/20 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                  <div className="text-4xl mb-4">{stat.icon}</div>
-                  <div className={`text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
+                <div className="bg-white/70 backdrop-blur-xl rounded-xl sm:rounded-2xl p-6 sm:p-8 shadow-xl border border-white/20 text-center hover:shadow-2xl transition-all duration-300 hover:scale-105">
+                  <div className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4">{stat.icon}</div>
+                  <div className={`text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent mb-2`}>
                     {stat.number}
                   </div>
-                  <div className="text-gray-600 font-medium">{stat.label}</div>
+                  <div className="text-gray-600 font-medium text-sm sm:text-base">{stat.label}</div>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-16 flex items-center justify-center space-x-8 flex-wrap gap-4">
-            {[
-              { icon: "🔒", text: "HIPAA Compliant", color: "text-green-600" },
-              { icon: "⚡", text: "Lightning Fast", color: "text-yellow-600" },
-              { icon: "🎯", text: "99.9% Uptime", color: "text-blue-600" },
-              { icon: "🏆", text: "Industry Leading", color: "text-purple-600" }
-            ].map((badge, index) => (
-              <div key={index} className="flex items-center space-x-2 bg-white/60 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm border border-white/20">
-                <span className="text-lg">{badge.icon}</span>
-                <span className={`text-sm font-semibold ${badge.color}`}>{badge.text}</span>
-              </div>
-            ))}
+          <div className="mt-12 sm:mt-16 flex items-center justify-center">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 max-w-4xl">
+              {[
+                { icon: "🔒", text: "HIPAA Compliant", color: "text-green-600" },
+                { icon: "⚡", text: "Lightning Fast", color: "text-yellow-600" },
+                { icon: "🎯", text: "99.9% Uptime", color: "text-blue-600" },
+                { icon: "🏆", text: "Industry Leading", color: "text-purple-600" }
+              ].map((badge, index) => (
+                <div key={index} className="flex flex-col sm:flex-row items-center justify-center sm:space-x-2 space-y-1 sm:space-y-0 bg-white/60 backdrop-blur-sm px-3 py-3 sm:px-4 sm:py-2 rounded-full shadow-sm border border-white/20">
+                  <span className="text-base sm:text-lg">{badge.icon}</span>
+                  <span className={`text-xs sm:text-sm font-semibold ${badge.color} text-center`}>{badge.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </main>
